@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>CyberShield</span>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li class="active"><a href="#" aria-current="page"><i class="fas fa-home"></i>Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-network-wired"></i>VPN Connect</a></li>
+                    <li><a href="#"><i class="fas fa-search"></i>URL Check</a></li>
+                    <li><a href="#"><i class="fas fa-lock"></i>Password</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search..." aria-label="Search the dashboard">
+                </div>
+                <div class="user-menu">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="srinu.jpg" alt="User" loading="lazy">
+                        <span>Srinu</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- URL Checker Card -->
+                <div class="card url-checker">
+                    <div class="card-header">
+                        <h3>URL Checker</h3>
+                        <span class="status active">Active</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="url-input">
+                            <input type="text" placeholder="Enter URL to check" aria-label="URL to scan">
+                            <button class="scan-btn">Scan</button>
+                        </div>
+                        <div class="scan-results"></div>
+                    </div>
+                </div>
+
+                <!-- Password Checker Card -->
+                <div class="card password-checker">
+                    <div class="card-header">
+                        <h3>Password Checker</h3>
+                        <span class="status active">Active</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="password-input">
+                            <input type="password" placeholder="Enter password" aria-label="Password to check">
+                            <div class="strength-meter"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VPN Status Card -->
+                <div class="card vpn-status">
+                    <div class="card-header">
+                        <h3>VPN Status</h3>
+                        <span class="status inactive">Disconnected</span>
+                    </div>
+                    <div class="card-content">
+                        <select class="vpn-location" aria-label="Select VPN location">
+                            <option value="">Select Location</option>
+                            <option value="us">United States</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="jp">Japan</option>
+                        </select>
+                        <button class="connect-btn">Connect</button>
+                    </div>
+                </div>
+
+                <!-- Data Breach Card -->
+                <div class="card data-breach">
+                    <div class="card-header">
+                        <h3>Data Breach Checker</h3>
+                        <span class="status active">Active</span>
+                    </div>
+                    <div class="card-content">
+                        <input type="email" placeholder="Enter email to check" aria-label="Email to check for breaches">
+                        <button class="check-btn">Check</button>
+                    </div>
+                </div>
+
+                <!-- System Status Card -->
+                <div class="card system-status">
+                    <div class="card-header">
+                        <h3>System Status</h3>
+                        <span class="status active">All Systems Operational</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="status-grid">
+                            <div class="status-item">
+                                <span class="label">Firewall</span>
+                                <span class="value active">Active</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="label">Antivirus</span>
+                                <span class="value active">Active</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="label">Updates</span>
+                                <span class="value pending">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,571 @@
+:root {
+    --primary-color: #00ffcc;
+    --secondary-color: #ff00ff;
+    --bg-dark: #0d0d0d;
+    --bg-card: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --danger-color: #ff4444;
+    --success-color: #00ff00;
+    --warning-color: #ffbb33;
+    --transition-duration: 0.2s; /* Standard transition duration */
+}
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    transition: background-color var(--transition-duration), color var(--transition-duration); /* Add transition for theme changes */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%; /* Ensure full width */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background: rgba(26, 26, 26, 0.95);
+    padding: 20px;
+    border-right: 1px solid rgba(0, 255, 204, 0.1);
+    transition: all 0.3s ease;
+    z-index: 100; /* Ensure sidebar is always visible */
+    position: sticky; /* Stick the sidebar to the top of the viewport */
+    top: 0; /* Align the sidebar to the top */
+    height: 100vh; /* Make the sidebar full height */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-menu ul {
+    list-style: none;
+    margin-top: 30px;
+}
+
+.nav-menu li {
+    margin-bottom: 10px;
+}
+
+.nav-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu li.active a {
+    background: rgba(0, 255, 204, 0.1);
+    color: var(--primary-color);
+}
+
+.nav-menu a[aria-current="page"] {
+    background: rgba(0, 255, 204, 0.2);
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(26, 26, 26, 0.95);
+    border-radius: 12px;
+    margin-bottom: 30px;
+    position: sticky; /* Stick the top bar to the top of the viewport */
+    top: 0; /* Align the top bar to the top */
+    z-index: 99; /* Ensure top bar is above other content */
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: 8px;
+    width: 300px;
+}
+
+.search-bar input {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    width: 100%;
+    outline: none;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.notifications {
+    position: relative;
+    cursor: pointer;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--secondary-color);
+    color: var(--bg-dark); /* Changed to dark for better contrast */
+    font-size: 0.7rem;
+    padding: 2px 5px;
+    border-radius: 50%;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.user-profile img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    object-fit: cover; /* Prevent image distortion */
+    object-position: center; /* Center the image */
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Card Styles */
+.card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(0, 255, 204, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative; /* For positioning pseudo-elements */
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 255, 204, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 204, 0.1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative; /* Ensure content is above pseudo-element */
+    z-index: 1;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold; /* Make status labels more prominent */
+}
+
+.status.active {
+    background: rgba(0, 255, 0, 0.1);
+    color: var(--success-color);
+}
+
+.status.inactive {
+    background: rgba(255, 0, 0, 0.1);
+    color: var(--danger-color);
+}
+
+.status.pending {
+    background: rgba(255, 187, 51, 0.1);
+    color: var(--warning-color);
+}
+
+.card-content {
+    position: relative; /* Ensure content is above pseudo-element */
+    z-index: 1;
+}
+
+.card-content input,
+.card-content select {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 204, 0.2);
+    border-radius: 6px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    outline: none; /* Remove default focus outline */
+    transition: border-color var(--transition-duration); /* Add transition for focus state */
+}
+
+.card-content input:focus,
+.card-content select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 255, 204, 0.3);
+}
+
+button {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--bg-dark);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(1); /* Reset scale on click */
+    opacity: 1; /* Reset opacity on click */
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none; /* Remove scaling when disabled */
+}
+
+/* URL Checker Styles */
+.url-input {
+    display: flex;
+    gap: 10px;
+}
+
+.url-input input {
+    flex: 1;
+}
+
+.scan-results {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px dashed rgba(0, 255, 204, 0.3);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: left;
+}
+
+.result {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+}
+
+.result.safe {
+    background: rgba(0, 255, 0, 0.05);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    color: var(--success-color);
+}
+
+.result.danger {
+    background: rgba(255, 0, 0, 0.05);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    color: var(--danger-color);
+}
+
+.result i {
+    font-size: 1.2rem;
+}
+
+.result-details h4 {
+    font-size: 1rem;
+    margin-bottom: 3px;
+}
+
+.result-details small {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.scanning {
+    font-style: italic;
+}
+
+/* Password Checker Styles */
+.password-input {
+    margin-bottom: 15px;
+}
+
+.strength-meter {
+    padding: 10px;
+    border: 1px solid rgba(0, 255, 204, 0.2);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.strength-bars {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.strength-bar {
+    width: 15px;
+    height: 8px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.strength-bar.filled {
+    background: var(--success-color); /* Adjust color based on strength */
+}
+
+.strength-text {
+    font-weight: bold;
+}
+
+/* VPN Status Styles */
+.vpn-location {
+    margin-bottom: 15px;
+}
+
+/* System Status Styles */
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.status-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid rgba(0, 255, 204, 0.2);
+    border-radius: 6px;
+}
+
+.status-item .label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 3px;
+}
+
+.status-item .value {
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column; /* Stack sidebar and content vertically */
+    }
+
+    .sidebar {
+        width: 100%;
+        position: static; /* Remove sticky positioning */
+        height: auto; /* Allow height to adjust based on content */
+        border-bottom: 1px solid rgba(0, 255, 204, 0.1); /* Add bottom border */
+    }
+
+    .sidebar .logo span,
+    .sidebar .nav-menu span {
+        display: inline; /* Show text in sidebar */
+    }
+
+    .nav-menu ul {
+        display: flex; /* Display menu items horizontally */
+        overflow-x: auto; /* Enable horizontal scrolling for menu items */
+        white-space: nowrap; /* Prevent wrapping of menu items */
+        padding: 10px 0; /* Add padding for scrolling */
+    }
+
+    .nav-menu li {
+        margin-bottom: 0;
+        margin-right: 10px; /* Add spacing between menu items */
+    }
+
+    .nav-menu a {
+        padding: 10px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
+
+    .top-bar {
+        flex-direction: column; /* Stack search and user menu vertically */
+        align-items: stretch; /* Stretch items to fill container width */
+    }
+
+    .search-bar {
+        width: 100%; /* Expand search bar to full width */
+        margin-bottom: 10px; /* Add spacing below search bar */
+    }
+
+    .user-menu {
+        justify-content: flex-end; /* Align user menu to the right */
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    .card {
+        padding: 15px; /* Reduce padding for cards */
+    }
+
+    .status-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adjust column width for smaller screens */
+    }
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Loading Animation */
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-spinner {
+    border: 5px solid rgba(0, 255, 204, 0.2);
+    border-top: 5px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: loading 1s linear infinite;
+    margin: 20px auto;
+}
+
+/* Utilities */
+.hidden {
+    display: none !important;
+}
+
+/* Toast Notification System */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast.success {
+    border-left: 4px solid var(--success-color);
+}
+
+.toast.error {
+    border-left: 4px solid var(--danger-color);
+}
+
+.toast.warning {
+    border-left: 4px solid var(--warning-color);
+}
+
+.toast.info {
+    border-left: 4px solid var(--primary-color);
+}
